@@ -41,9 +41,13 @@
 
 	const props = defineProps({
 		language: '',
+		top: false,
 	});
 
 	let postlist = posts._rawValue;
+	if(props.top){
+		postlist = postlist.filter((post) => post.top);
+	}
 
   if(order === 'ASC'){
     // oldest -> newest

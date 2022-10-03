@@ -30,10 +30,11 @@
 	import translation from '~/assets/translation.json';
 	import { settings } from '~/assets/settings.js';
 
-	let language = ref('en');
+	let language = ref(false);
 	let category = "articles";
 
 	function setLang (lang){
+		console.log(lang);
 		window.localStorage.setItem('lang', lang);
 		document.documentElement.setAttribute('lang', lang);
 		language.value = lang;

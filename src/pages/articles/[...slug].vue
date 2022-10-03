@@ -1,6 +1,8 @@
 <template>
   <main class="g-main" v-if="language">
+
 		<Header :current="category" layout="single" :language="language" @getLang="setLang" />
+
 		<article class="l-article" :id="category">
 			<header class="m-header">
 				<h1 class="title">{{translation[category].title[language]}}</h1>
@@ -33,7 +35,7 @@
 	const { data } = await useAsyncData('get-document', () => queryContent(route.fullPath).findOne());
 	const articleData = data._rawValue;
 
-	let language = ref('en');
+	let language = ref(false);
 	let category = 'articles';
 
 	function dateSyle(){
@@ -44,11 +46,9 @@
 		}
 	};
 
-	function setLang(lang){
+	function setLang (lang){
 		window.localStorage.setItem('lang', lang);
-		document.documentElement.setAttribute('lang', lang);
 		language.value = lang;
-		setTitle(lang);
 	};
 
 	function getLang(){
@@ -81,6 +81,7 @@
 
 	onUpdated(() => {
 		setTitle(language.value);
+		document.documentElement.setAttribute('lang', language.value);
 	})
 	onMounted(() => {
 		getLang();

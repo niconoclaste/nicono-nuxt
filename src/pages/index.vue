@@ -102,7 +102,7 @@
 
 			<section class="l-section">
 				<div class="m-bloc">
-					<PostsList :language="language" />
+					<PostsList :language="language" :top=true />
 				</div>
 			</section>
 
